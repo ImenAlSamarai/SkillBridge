@@ -17,6 +17,13 @@ try:
 except ImportError:
     pass  # dotenv not installed, skip
 
+# Try to import streamlit for secrets (when deployed)
+try:
+    import streamlit as st
+    HAS_STREAMLIT = True
+except ImportError:
+    HAS_STREAMLIT = False
+
 
 def call_llm(prompt: str, temperature: float = 0.1, max_tokens: int = 2000) -> Tuple[str, int]:
     """
@@ -36,7 +43,14 @@ def call_llm(prompt: str, temperature: float = 0.1, max_tokens: int = 2000) -> T
         ImportError: If Ollama not installed in LOCAL_MODE
         ValueError: If GROQ_API_KEY not set in deploy mode
     """
-    local_mode = os.getenv("LOCAL_MODE", "false").lower() == "true"
+    # Check for Streamlit secrets first (deployed), then fall back to env vars (local)
+    if HAS_STREAMLIT and hasattr(st, 'secrets') and 'llm' in st.secrets:
+        provider = st.secrets['llm'].get('provider', 'groq')
+        local_mode = provider == 'ollama'
+        api_key = st.secrets['llm'].get('groq_api_key') if provider == 'groq' else None
+    else:
+        local_mode = os.getenv("LOCAL_MODE", "false").lower() == "true"
+        api_key = os.getenv("GROQ_API_KEY")
 
     if local_mode:
         # DEV MODE: FREE Ollama (unlimited local inference)
@@ -68,11 +82,10 @@ def call_llm(prompt: str, temperature: float = 0.1, max_tokens: int = 2000) -> T
         # DEPLOY MODE: Groq API (for beta testers)
         from groq import Groq
 
-        api_key = os.getenv("GROQ_API_KEY")
         if not api_key:
             raise ValueError(
-                "GROQ_API_KEY environment variable not set.\n"
-                "Set LOCAL_MODE=true for free Ollama, or add GROQ_API_KEY for deploy."
+                "GROQ_API_KEY not found in Streamlit secrets or environment variables.\n"
+                "Add groq_api_key to [llm] section in Streamlit Cloud secrets, or set GROQ_API_KEY env var."
             )
 
         client = Groq(api_key=api_key)
