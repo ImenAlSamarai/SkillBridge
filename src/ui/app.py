@@ -18,6 +18,9 @@ from src.core import database
 from src.core.llm_engine import call_llm
 from src.core import calculate_depth_score
 
+# Initialize database on startup
+database.init_db()
+
 # ============================================================
 # AUTHENTICATION & SESSION MANAGEMENT
 # ============================================================
