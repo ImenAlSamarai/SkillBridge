@@ -13,8 +13,12 @@ from pathlib import Path
 
 # Database path - always relative to project root
 PROJECT_ROOT = Path(__file__).parent.parent.parent
-DB_NAME = str(PROJECT_ROOT / "database" / "learnflow.db")
+DB_DIR = PROJECT_ROOT / "database"
+DB_NAME = str(DB_DIR / "learnflow.db")
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+
+# Ensure database directory exists
+DB_DIR.mkdir(parents=True, exist_ok=True)
 
 
 @contextmanager
