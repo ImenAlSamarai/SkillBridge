@@ -1,0 +1,91 @@
+# Thresholds and Calculation Parameters
+# Configure depth scoring, mastery levels, and content personalization rules
+
+# Depth Score Calculation
+# Used by: app.py calculate_depth_score()
+depth_calculation:
+  # Seniority level base scores (0.0 = beginner, 1.0 = expert)
+  seniority_levels:
+    Student: 0.15
+    Junior: 0.25
+    Intermediate: 0.50
+    Senior: 0.75
+    Advanced: 1.00
+
+  # Weights for calculating user's starting depth
+  weights:
+    target_seniority: 0.7  # 70% weight on target seniority level
+    mastery: 0.3           # 30% weight on current mastery
+
+  # Module progression parameters
+  module_progression:
+    total_modules: 8       # Number of modules per topic
+    max_bonus: 0.25        # Maximum bonus from module progression (Module 1: +0.00, Module 8: +0.25)
+    divisor: 28.0          # Formula: (module_id - 1) / divisor
+
+  # Depth score caps
+  min_depth: 0.0
+  max_depth: 1.0
+
+# Content Personalization Thresholds
+# Used by: Agent 3 (content_generator.py)
+content_personalization:
+  # Foundational content threshold (depth < this = teach basics)
+  foundational_threshold: 0.3
+
+  # Reframing threshold (depth >= this = can reframe module names)
+  reframing_threshold: 0.5
+
+  # Skip basics threshold (mastery >= this = skip basic definitions)
+  skip_basics_mastery: 50
+
+  # Foundational module keywords (case-insensitive)
+  foundational_keywords:
+    - "foundations"
+    - "basics"
+    - "introduction"
+    - "basis"
+    - "fundamentals"
+    - "overview"
+    - "essentials"
+
+# Mastery Estimation
+# Used by: Agent 2 (topic_assessor.py)
+mastery_estimation:
+  # Default mastery for topics not in user's background
+  default_mastery: 0
+
+  # Mastery range
+  min_mastery: 0
+  max_mastery: 100
+
+  # Modules complete calculation
+  modules_per_topic: 8
+  completion_factor: 0.01  # modules_complete = mastery * modules_per_topic * factor
+
+# Global Readiness Calculation
+# Used by: Agent 2 (topic_assessor.py)
+readiness_calculation:
+  # Average of all topic mastery levels
+  method: "average"
+
+  # Round to decimal places
+  precision: 1
+
+# Question Difficulty Mapping
+# Used by: Agent 3 (content_generator.py)
+question_difficulty:
+  Student: "Conceptual"
+  Junior: "Applied"
+  Intermediate: "Analytical"
+  Senior: "Strategic"
+  Advanced: "Expert"
+
+# Explanation Style Mapping
+# Used by: Agent 3 (content_generator.py)
+explanation_style:
+  Student: "ELI5 with analogies"
+  Junior: "Practical with examples"
+  Intermediate: "Technical with depth"
+  Senior: "Advanced with nuance"
+  Advanced: "Expert-level detail"

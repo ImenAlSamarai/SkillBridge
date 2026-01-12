@@ -1,0 +1,21 @@
+# Golden reference books for quant/ML interview preparation
+books:
+  - title: "Advances in Financial Machine Learning"
+    author: "Marcos Lopez de Prado"
+    category: "Financial Machine Learning"
+
+  - title: "Pattern Recognition and Machine Learning"
+    author: "Christopher Bishop"
+    category: "Machine Learning"
+
+  - title: "The Elements of Statistical Learning"
+    author: "Trevor Hastie, Robert Tibshirani, Jerome Friedman"
+    category: "Statistical Learning"
+
+  - title: "Python for Algorithmic Trading: From Idea to Cloud Deployment"
+    author: "Yves Hilpisch"
+    category: "Algorithmic Trading"
+
+  - title: "Theory of Financial Risk and Derivative Pricing"
+    author: "Jean-Paul Bouchaud, Marc Potters"
+    category: "Quantitative Finance"

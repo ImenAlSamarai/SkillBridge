@@ -1,0 +1,102 @@
+# Agent 1: Job Parser Configuration
+# Extracts skill gaps from job descriptions and generates learning topics
+
+agent_metadata:
+  name: "Job Parser"
+  version: "2.0"
+  description: "Analyzes current vs target job descriptions to identify skill gaps"
+
+# LLM Settings
+llm_config:
+  model: "llama-3.3-70b-versatile"  # Default model from llm_engine
+  temperature: 0.3                   # Focused but diverse skill extraction
+  max_tokens: 1000
+  timeout_seconds: 30
+
+# Input Parameters
+input_fields:
+  required:
+    - "current_job_title"
+    - "current_description"
+    - "current_seniority"
+    - "target_job_title"
+    - "target_description"
+    - "target_seniority"
+
+  optional:
+    - "target_company"
+    - "target_industry"
+
+# Validation Rules
+validation:
+  valid_difficulties:
+    - "foundational"
+    - "intermediate"
+    - "advanced"
+
+  # Auto-fix invalid difficulties
+  difficulty_mapping:
+    expert: "advanced"
+    basic: "foundational"
+    beginner: "foundational"
+
+  # Maximum topics to generate
+  max_topics: 30
+  min_topics: 5
+
+  # Check for duplicate IDs
+  check_duplicates: true
+
+  # Validate prerequisite chains
+  validate_prereqs: true
+
+# Recent Skills Check
+recent_skills:
+  enabled: true
+  lookback_days: 30
+  mastery_threshold: 80  # Only topics with mastery >= this are considered "recently mastered"
+
+# Topic Structure Requirements
+topic_structure:
+  required_fields:
+    - "id"
+    - "prereq"
+    - "difficulty"
+
+  id_format: "snake_case"  # e.g., "machine_learning", "data_structures"
+
+  prereq_rules:
+    allow_null: true       # prereq can be null (no prerequisite)
+    allow_list: false      # Auto-fix: Convert list to first item
+    must_exist: false      # Auto-fix: Set to null if prereq doesn't exist
+
+# Output Format
+output:
+  format: "json"
+  structure: "list_of_dicts"
+
+  example:
+    - id: "statistics"
+      prereq: null
+      difficulty: "foundational"
+    - id: "machine_learning"
+      prereq: "statistics"
+      difficulty: "intermediate"
+
+# Error Handling
+error_handling:
+  retry_on_json_error: true
+  max_retries: 2
+  auto_fix_enabled: true  # Enable auto-fixes for common LLM errors
+
+  auto_fixes:
+    - "Convert list prereqs to first item"
+    - "Map invalid difficulties to valid ones"
+    - "Remove duplicate topic IDs"
+    - "Set non-existent prereqs to null"
+
+# Logging
+logging:
+  log_recent_skills: true
+  log_validation_warnings: true
+  log_auto_fixes: true

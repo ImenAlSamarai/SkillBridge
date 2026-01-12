@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Alex Student",
+    "email": "alex@student.edu",
+    "password": "test123",
+    "current_job_title": "Undergrad Math Student",
+    "current_description": "Mathematics undergraduate studying probability theory and linear algebra",
+    "current_seniority": "Student",
+    "target_job_title": "Quant Researcher",
+    "target_description": "Quantitative research intern focusing on statistical arbitrage",
+    "target_seniority": "Junior",
+    "target_company": "Two Sigma",
+    "target_industry": "Finance"
+  },
+  {
+    "name": "Sarah Analyst",
+    "email": "sarah@analyst.com",
+    "password": "test123",
+    "current_job_title": "Junior Data Analyst",
+    "current_description": "Data analyst working on business intelligence and SQL queries",
+    "current_seniority": "Junior",
+    "target_job_title": "Quant Researcher",
+    "target_description": "Quantitative researcher developing trading strategies",
+    "target_seniority": "Intermediate",
+    "target_company": "Jane Street",
+    "target_industry": "Finance"
+  },
+  {
+    "name": "Mike ML",
+    "email": "mike@ml.com",
+    "password": "test123",
+    "current_job_title": "ML Engineer",
+    "current_description": "Machine learning engineer building recommendation systems",
+    "current_seniority": "Intermediate",
+    "target_job_title": "Quant Trader",
+    "target_description": "Quantitative trader implementing high-frequency trading algorithms",
+    "target_seniority": "Advanced",
+    "target_company": "Citadel",
+    "target_industry": "Finance"
+  },
+  {
+    "name": "Emma Quant",
+    "email": "emma@quant.com",
+    "password": "test123",
+    "current_job_title": "Quant Analyst",
+    "current_description": "Quantitative analyst performing risk modeling and portfolio optimization",
+    "current_seniority": "Intermediate",
+    "target_job_title": "Quant Trader",
+    "target_description": "Senior quantitative trader managing systematic trading strategies",
+    "target_seniority": "Advanced",
+    "target_company": "DE Shaw",
+    "target_industry": "Finance"
+  },
+  {
+    "name": "Tom Physics",
+    "email": "tom@physics.edu",
+    "password": "test123",
+    "current_job_title": "Physics PhD Candidate",
+    "current_description": "PhD in theoretical physics researching computational methods",
+    "current_seniority": "Advanced",
+    "target_job_title": "ML Researcher",
+    "target_description": "Machine learning researcher focusing on deep learning for finance",
+    "target_seniority": "Advanced",
+    "target_company": "Jane Street",
+    "target_industry": "Finance"
+  }
+]

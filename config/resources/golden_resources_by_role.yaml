@@ -1,0 +1,633 @@
+# Golden Resources by Target Role - TIERED BY EXPERIENCE
+# Curated, verified resources for each quant finance career path
+# Used by: Agent 3 (content_generator.py) to provide reliable learning resources
+#
+# TIERS:
+#   Tier 1 (Entry): Interns, career changers, beginners - foundations, intuition
+#   Tier 2 (Intermediate): Analysts, junior quants, 1-3 years - theory + application
+#   Tier 3 (Advanced): Senior quants, researchers, 5+ years - cutting-edge, deep theory
+#
+# RESOURCE TYPES:
+#   - MIT OCW courses (FREE, verified)
+#   - Free online textbooks (verified URLs)
+#   - Paid books (noted as PAID, no fake URLs)
+#   - NO videos, NO Khan Academy as requested
+
+# =============================================================================
+# SHARED RESOURCES BY TIER (Core quant foundations)
+# =============================================================================
+shared_resources:
+  mathematics:
+    tier_1:
+      - text: "MIT OCW 18.06SC: Linear Algebra (Gilbert Strang)"
+        url: "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/"
+        note: "FREE - Best intro to linear algebra"
+      - text: "MIT OCW 18.05: Introduction to Probability and Statistics"
+        url: "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/"
+        note: "FREE"
+      - text: "An Introduction to Statistical Learning (ISLR)"
+        url: "https://www.statlearning.com/"
+        note: "FREE PDF - Excellent for beginners"
+
+    tier_2:
+      - text: "MIT OCW 18.S096: Topics in Mathematics with Applications in Finance"
+        url: "https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/"
+        note: "FREE - Finance-specific math"
+      - text: "MIT OCW 18.650: Statistics for Applications"
+        url: "https://ocw.mit.edu/courses/18-650-statistics-for-applications-fall-2016/"
+        note: "FREE"
+      - text: "Mathematics for Machine Learning"
+        url: "https://mml-book.github.io/"
+        note: "FREE PDF"
+
+    tier_3:
+      - text: "The Elements of Statistical Learning (ESL)"
+        url: "https://hastie.su.domains/ElemStatLearn/"
+        note: "FREE PDF - Advanced reference"
+      - text: "MIT OCW 18.657: Mathematics of Machine Learning"
+        url: "https://ocw.mit.edu/courses/18-657-mathematics-of-machine-learning-fall-2015/"
+        note: "FREE"
+      - text: "Stochastic Calculus for Finance II (Shreve)"
+        note: "(PAID - Industry standard for derivatives)"
+
+  programming:
+    tier_1:
+      - text: "Think Python 3rd Edition"
+        url: "https://greenteapress.com/wp/think-python-3rd-edition/"
+        note: "FREE - Best Python intro"
+      - text: "MIT OCW 6.0001: Introduction to CS with Python"
+        url: "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/"
+        note: "FREE"
+      - text: "Automate the Boring Stuff with Python"
+        url: "https://automatetheboringstuff.com/"
+        note: "FREE online"
+      - text: "Real Python Tutorials"
+        url: "https://realpython.com/"
+        note: "FREE tutorials"
+
+    tier_2:
+      - text: "Python Data Science Handbook"
+        url: "https://jakevdp.github.io/PythonDataScienceHandbook/"
+        note: "FREE online - NumPy, Pandas, Matplotlib"
+      - text: "MIT OCW 6.006: Introduction to Algorithms"
+        url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/"
+        note: "FREE"
+      - text: "NumPy User Guide"
+        url: "https://numpy.org/doc/stable/user/index.html"
+        note: "FREE - Official documentation"
+      - text: "Pandas User Guide"
+        url: "https://pandas.pydata.org/docs/user_guide/index.html"
+        note: "FREE - Official documentation"
+      - text: "Python for Finance (Yves Hilpisch)"
+        note: "(PAID - Excellent for quant Python)"
+      - text: "Fluent Python (Luciano Ramalho)"
+        note: "(PAID - Intermediate Python)"
+
+    tier_3:
+      - text: "MIT OCW 6.172: Performance Engineering of Software Systems"
+        url: "https://ocw.mit.edu/courses/6-172-performance-engineering-of-software-systems-fall-2018/"
+        note: "FREE - Low latency systems"
+      - text: "High Performance Python"
+        url: "https://www.oreilly.com/library/view/high-performance-python/9781492055013/"
+        note: "(PAID)"
+      - text: "Python Concurrency with asyncio"
+        url: "https://docs.python.org/3/library/asyncio.html"
+        note: "FREE - Official async documentation"
+      - text: "Effective Modern C++ (Scott Meyers)"
+        note: "(PAID - Essential for C++ quants)"
+
+  machine_learning:
+    tier_1:
+      - text: "An Introduction to Statistical Learning (ISLR)"
+        url: "https://www.statlearning.com/"
+        note: "FREE PDF - Start here"
+      - text: "fast.ai Practical Deep Learning"
+        url: "https://course.fast.ai/"
+        note: "FREE - Practical approach"
+
+    tier_2:
+      - text: "Deep Learning Book (Goodfellow, Bengio, Courville)"
+        url: "https://www.deeplearningbook.org/"
+        note: "FREE online"
+      - text: "Hands-On Machine Learning (Géron)"
+        note: "(PAID - Excellent practical guide)"
+      - text: "Pattern Recognition and Machine Learning (Bishop)"
+        note: "(PAID - Theoretical foundation)"
+
+    tier_3:
+      - text: "The Elements of Statistical Learning (ESL)"
+        url: "https://hastie.su.domains/ElemStatLearn/"
+        note: "FREE PDF"
+      - text: "Probabilistic Machine Learning (Kevin Murphy)"
+        url: "https://probml.github.io/pml-book/"
+        note: "FREE PDF - Advanced"
+      - text: "Advances in Financial Machine Learning (López de Prado)"
+        note: "(PAID - Industry standard for quant ML)"
+
+  trading:
+    tier_1:
+      - text: "QuantConnect Learning Center"
+        url: "https://www.quantconnect.com/learning"
+        note: "FREE - Beginner-friendly backtesting"
+      - text: "Yale ECON 252: Financial Markets (Robert Shiller)"
+        url: "https://oyc.yale.edu/economics/econ-252"
+        note: "FREE - Market fundamentals"
+      - text: "Investopedia Trading Education"
+        url: "https://www.investopedia.com/trading-4427765"
+        note: "FREE - Basic concepts"
+
+    tier_2:
+      - text: "Backtrader Documentation"
+        url: "https://www.backtrader.com/docu/"
+        note: "FREE - Python backtesting framework"
+      - text: "QuantConnect Learning Center"
+        url: "https://www.quantconnect.com/learning"
+        note: "FREE - Algo trading tutorials"
+      - text: "Zipline Documentation"
+        url: "https://zipline.ml4trading.io/"
+        note: "FREE - Quantopian's backtester"
+      - text: "Python for Algorithmic Trading (Hilpisch)"
+        note: "(PAID - Excellent practical guide)"
+
+    tier_3:
+      - text: "Algorithmic and High-Frequency Trading (Cartea et al.)"
+        note: "(PAID - Essential for HFT)"
+      - text: "Advances in Financial Machine Learning (López de Prado)"
+        note: "(PAID - ML for trading)"
+      - text: "Optimal Trading Strategies (Kissell & Glantz)"
+        note: "(PAID - Execution algorithms)"
+
+  stochastic:
+    tier_1:
+      - text: "MIT OCW 18.S096: Topics in Mathematics with Applications in Finance"
+        url: "https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/"
+        note: "FREE - Intro to stochastic calculus and Monte Carlo"
+      - text: "MIT OCW 18.05: Probability and Statistics"
+        url: "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/"
+        note: "FREE - Probability foundations for simulation"
+
+    tier_2:
+      - text: "MIT OCW 18.S096: Topics in Mathematics with Applications in Finance"
+        url: "https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/"
+        note: "FREE - Brownian motion, Ito calculus, Monte Carlo methods"
+      - text: "Paul Glasserman - Monte Carlo Methods in Financial Engineering"
+        note: "(PAID - Industry standard for MC simulation)"
+      - text: "Introduction to Stochastic Calculus (Klebaner)"
+        note: "(PAID - Good intermediate text)"
+
+    tier_3:
+      - text: "Paul Glasserman - Monte Carlo Methods in Financial Engineering"
+        note: "(PAID - Definitive reference for financial MC)"
+      - text: "Stochastic Calculus for Finance II (Shreve)"
+        note: "(PAID - Industry standard)"
+      - text: "MIT OCW 18.S096: Topics in Mathematics with Applications in Finance"
+        url: "https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/"
+        note: "FREE - Advanced stochastic modeling"
+
+# =============================================================================
+# ROLE-SPECIFIC RESOURCES
+# =============================================================================
+roles:
+  # ---------------------------------------------------------------------------
+  # ENTRY LEVEL
+  # ---------------------------------------------------------------------------
+  "Quant Intern":
+    default_tier: 1
+    core_resources:
+      - text: "MIT OCW 18.06SC: Linear Algebra (Gilbert Strang)"
+        url: "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/"
+        note: "FREE"
+      - text: "A Practical Guide to Quantitative Finance Interviews (Green Book)"
+        note: "(PAID - Interview Bible)"
+      - text: "Fifty Challenging Problems in Probability"
+        url: "https://www.amazon.com/Fifty-Challenging-Problems-Probability-Solutions/dp/0486653552"
+        note: "(PAID - Interview prep)"
+    topic_resources:
+      probability:
+        - text: "MIT OCW 18.05: Probability and Statistics"
+          url: "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/"
+      brainteasers:
+        - text: "Heard on The Street (Timothy Crack)"
+          note: "(PAID - Interview classic)"
+
+  "Trading Intern":
+    default_tier: 1
+    core_resources:
+      - text: "MIT OCW 18.05: Probability and Statistics"
+        url: "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/"
+        note: "FREE"
+      - text: "Yale ECON 252: Financial Markets (Robert Shiller)"
+        url: "https://oyc.yale.edu/economics/econ-252"
+        note: "FREE"
+      - text: "A Practical Guide to Quantitative Finance Interviews"
+        note: "(PAID)"
+    topic_resources:
+      options:
+        - text: "Options, Futures, and Other Derivatives (Hull) - Chapters 1-10"
+          note: "(PAID - Industry standard)"
+
+  # ---------------------------------------------------------------------------
+  # ANALYST ROLES (Tier 2)
+  # ---------------------------------------------------------------------------
+  "Quant Analyst":
+    default_tier: 2
+    core_resources:
+      - text: "MIT OCW 18.S096: Topics in Mathematics with Applications in Finance"
+        url: "https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/"
+        note: "FREE"
+      - text: "MIT OCW 15.401: Finance Theory I"
+        url: "https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/"
+        note: "FREE"
+      - text: "An Introduction to Statistical Learning (ISLR)"
+        url: "https://www.statlearning.com/"
+        note: "FREE PDF"
+    topic_resources:
+      risk:
+        - text: "MIT OCW 15.450: Analytics of Finance"
+          url: "https://ocw.mit.edu/courses/15-450-analytics-of-finance-fall-2010/"
+      portfolio:
+        - text: "MIT OCW 15.433: Investments"
+          url: "https://ocw.mit.edu/courses/15-433-investments-spring-2003/"
+
+  "Risk Analyst":
+    default_tier: 2
+    core_resources:
+      - text: "MIT OCW 15.401: Finance Theory I"
+        url: "https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/"
+        note: "FREE"
+      - text: "OpenIntro Statistics"
+        url: "https://www.openintro.org/book/os/"
+        note: "FREE"
+      - text: "Value at Risk (Philippe Jorion)"
+        note: "(PAID - Industry standard)"
+    topic_resources:
+      credit_risk:
+        - text: "Credit Risk Modeling using Excel and VBA (Löffler)"
+          note: "(PAID)"
+
+  "Quant Developer":
+    default_tier: 2
+    core_resources:
+      - text: "MIT OCW 6.006: Introduction to Algorithms"
+        url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/"
+        note: "FREE"
+      - text: "Python Data Science Handbook"
+        url: "https://jakevdp.github.io/PythonDataScienceHandbook/"
+        note: "FREE"
+      - text: "QuantLib Python Documentation"
+        url: "https://quantlib-python-docs.readthedocs.io/"
+        note: "FREE"
+    topic_resources:
+      low_latency:
+        - text: "MIT OCW 6.172: Performance Engineering"
+          url: "https://ocw.mit.edu/courses/6-172-performance-engineering-of-software-systems-fall-2018/"
+      data_structures:
+        - text: "Algorithms by Jeff Erickson"
+          url: "http://jeffe.cs.illinois.edu/teaching/algorithms/"
+          note: "FREE"
+
+  "Algo Developer":
+    default_tier: 2
+    core_resources:
+      - text: "MIT OCW 6.006: Introduction to Algorithms"
+        url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/"
+        note: "FREE"
+      - text: "Designing Data-Intensive Applications (Kleppmann)"
+        note: "(PAID - Industry standard)"
+      - text: "System Design Interview (Alex Xu)"
+        note: "(PAID)"
+    topic_resources:
+      api_design:
+        - text: "FastAPI Documentation"
+          url: "https://fastapi.tiangolo.com/"
+          note: "FREE"
+
+  "Data Scientist (Finance)":
+    default_tier: 2
+    core_resources:
+      - text: "Python Data Science Handbook"
+        url: "https://jakevdp.github.io/PythonDataScienceHandbook/"
+        note: "FREE"
+      - text: "An Introduction to Statistical Learning (ISLR)"
+        url: "https://www.statlearning.com/"
+        note: "FREE PDF"
+      - text: "Hands-On Machine Learning (Géron)"
+        note: "(PAID)"
+    topic_resources:
+      feature_engineering:
+        - text: "Feature Engineering for Machine Learning"
+          note: "(PAID)"
+      nlp:
+        - text: "Speech and Language Processing (Jurafsky & Martin)"
+          url: "https://web.stanford.edu/~jurafsky/slp3/"
+          note: "FREE draft"
+
+  "Algorithmic Trader":
+    default_tier: 2
+    core_resources:
+      - text: "QuantConnect Learning Center"
+        url: "https://www.quantconnect.com/learning"
+        note: "FREE"
+      - text: "Python for Algorithmic Trading (Hilpisch)"
+        note: "(PAID - Excellent practical guide)"
+      - text: "Interactive Brokers API Documentation"
+        url: "https://interactivebrokers.github.io/tws-api/"
+        note: "FREE"
+    topic_resources:
+      backtesting:
+        - text: "Backtrader Documentation"
+          url: "https://www.backtrader.com/docu/"
+          note: "FREE"
+
+  # ---------------------------------------------------------------------------
+  # SENIOR ROLES (Tier 3)
+  # ---------------------------------------------------------------------------
+  "Quant Researcher":
+    default_tier: 3
+    core_resources:
+      - text: "Advances in Financial Machine Learning (López de Prado)"
+        note: "(PAID - Industry standard)"
+      - text: "MIT OCW 18.S096: Topics in Mathematics with Applications in Finance"
+        url: "https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/"
+        note: "FREE"
+      - text: "The Elements of Statistical Learning (ESL)"
+        url: "https://hastie.su.domains/ElemStatLearn/"
+        note: "FREE PDF"
+    topic_resources:
+      statistical_arbitrage:
+        - text: "Statistical Arbitrage (Pole)"
+          note: "(PAID)"
+        - text: "MIT OCW 15.450: Analytics of Finance"
+          url: "https://ocw.mit.edu/courses/15-450-analytics-of-finance-fall-2010/"
+      time_series:
+        - text: "MIT OCW 14.384: Time Series Analysis"
+          url: "https://ocw.mit.edu/courses/14-384-time-series-analysis-fall-2013/"
+      derivatives:
+        - text: "Stochastic Calculus for Finance II (Shreve)"
+          note: "(PAID)"
+
+  "Quant Strategist":
+    default_tier: 3
+    core_resources:
+      - text: "Advances in Financial Machine Learning (López de Prado)"
+        note: "(PAID)"
+      - text: "Active Portfolio Management (Grinold & Kahn)"
+        note: "(PAID - Portfolio construction bible)"
+      - text: "MIT OCW 15.S08: FinTech"
+        url: "https://ocw.mit.edu/courses/15-s08-fintech-shaping-the-financial-world-spring-2020/"
+        note: "FREE"
+    topic_resources:
+      market_microstructure:
+        - text: "Market Microstructure Theory (O'Hara)"
+          note: "(PAID - Classic)"
+
+  "Quant Trader":
+    default_tier: 3
+    core_resources:
+      - text: "Advances in Financial Machine Learning (López de Prado)"
+        note: "(PAID)"
+      - text: "MIT OCW 18.S096: Topics in Math with Finance Applications"
+        url: "https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/"
+        note: "FREE"
+      - text: "QuantConnect Learning Center"
+        url: "https://www.quantconnect.com/learning"
+        note: "FREE"
+    topic_resources:
+      execution:
+        - text: "Optimal Trading Strategies (Kissell & Glantz)"
+          note: "(PAID)"
+      market_making:
+        - text: "Algorithmic and High-Frequency Trading (Cartea et al.)"
+          note: "(PAID - Essential for HFT)"
+
+  "Systematic Trader":
+    default_tier: 3
+    core_resources:
+      - text: "QuantConnect Learning Center"
+        url: "https://www.quantconnect.com/learning"
+        note: "FREE"
+      - text: "Zipline Documentation"
+        url: "https://zipline.ml4trading.io/"
+        note: "FREE"
+      - text: "Machine Learning for Algorithmic Trading (Jansen)"
+        note: "(PAID)"
+    topic_resources:
+      backtesting:
+        - text: "Backtrader Documentation"
+          url: "https://www.backtrader.com/docu/"
+          note: "FREE"
+
+  "ML Engineer (Finance)":
+    default_tier: 3
+    core_resources:
+      - text: "Deep Learning Book (Goodfellow)"
+        url: "https://www.deeplearningbook.org/"
+        note: "FREE"
+      - text: "Full Stack Deep Learning"
+        url: "https://fullstackdeeplearning.com/"
+        note: "FREE"
+      - text: "Made With ML"
+        url: "https://madewithml.com/"
+        note: "FREE"
+    topic_resources:
+      mlops:
+        - text: "MLflow Documentation"
+          url: "https://mlflow.org/docs/latest/index.html"
+          note: "FREE"
+      transformers:
+        - text: "Hugging Face Course"
+          url: "https://huggingface.co/course"
+          note: "FREE"
+
+  "Risk Quant":
+    default_tier: 3
+    core_resources:
+      - text: "MIT OCW 15.450: Analytics of Finance"
+        url: "https://ocw.mit.edu/courses/15-450-analytics-of-finance-fall-2010/"
+        note: "FREE"
+      - text: "Value at Risk (Philippe Jorion)"
+        note: "(PAID - Industry standard)"
+      - text: "Risk Management and Financial Institutions (Hull)"
+        note: "(PAID)"
+    topic_resources:
+      var:
+        - text: "Basel Committee Papers"
+          url: "https://www.bis.org/bcbs/publications.htm"
+          note: "FREE"
+      stress_testing:
+        - text: "Stress Testing and Risk Integration in Banks (Rösch)"
+          note: "(PAID)"
+
+  "Trading Systems Engineer":
+    default_tier: 3
+    core_resources:
+      - text: "MIT OCW 6.172: Performance Engineering"
+        url: "https://ocw.mit.edu/courses/6-172-performance-engineering-of-software-systems-fall-2018/"
+        note: "FREE"
+      - text: "Designing Data-Intensive Applications (Kleppmann)"
+        note: "(PAID - Essential)"
+      - text: "Effective Modern C++ (Scott Meyers)"
+        note: "(PAID)"
+    topic_resources:
+      networking:
+        - text: "High Performance Browser Networking"
+          url: "https://hpbn.co/"
+          note: "FREE"
+      concurrency:
+        - text: "C++ Concurrency in Action (Williams)"
+          note: "(PAID)"
+
+# =============================================================================
+# TOPIC KEYWORDS (for matching module names to resources)
+# =============================================================================
+topic_keywords:
+  linear_algebra:
+    - "linear"
+    - "algebra"
+    - "matrix"
+    - "vector"
+    - "eigenvalue"
+    - "pca"
+    - "svd"
+    - "decomposition"
+    - "inverse"
+    - "determinant"
+  
+  probability:
+    - "probability"
+    - "random"
+    - "distribution"
+    - "bayesian"
+    - "sampling"
+    - "expectation"
+    - "variance"
+  
+  statistics:
+    - "statistics"
+    - "hypothesis"
+    - "regression"
+    - "inference"
+    - "estimation"
+    - "confidence"
+    - "p-value"
+    - "anova"
+  
+  calculus:
+    - "calculus"
+    - "integral"
+    - "gradient"
+    - "optimization"
+    - "differential"
+    - "taylor"
+  
+  stochastic:
+    - "stochastic"
+    - "brownian"
+    - "ito"
+    - "martingale"
+    - "diffusion"
+    - "sde"
+    - "monte carlo"
+    - "simulation"
+    - "path"
+    - "wiener"
+  
+  machine_learning:
+    - "machine learning"
+    - "ml"
+    - "neural"
+    - "deep learning"
+    - "classification"
+    - "clustering"
+    - "feature"
+    - "model"
+    - "training"
+    - "cross-validation"
+    - "overfitting"
+    - "regularization"
+  
+  python:
+    - "python"
+    - "pandas"
+    - "numpy"
+    - "array"
+    - "dataframe"
+    - "vectorized"
+    - "async"
+    - "memory"
+    - "performance"
+    - "debugging"
+    - "testing"
+    - "production"
+  
+  algorithms:
+    - "algorithm"
+    - "data structure"
+    - "complexity"
+    - "sorting"
+    - "searching"
+    - "graph"
+    - "tree"
+    - "hash"
+  
+  derivatives:
+    - "option"
+    - "pricing"
+    - "black scholes"
+    - "greeks"
+    - "hedging"
+    - "volatility surface"
+    - "exotic"
+    - "swap"
+    - "futures"
+  
+  risk:
+    - "risk"
+    - "var"
+    - "volatility"
+    - "stress"
+    - "credit"
+    - "exposure"
+    - "drawdown"
+  
+  portfolio:
+    - "portfolio"
+    - "allocation"
+    - "sharpe"
+    - "markowitz"
+    - "rebalancing"
+    - "diversification"
+  
+  trading:
+    - "trading"
+    - "execution"
+    - "order"
+    - "market making"
+    - "liquidity"
+    - "backtesting"
+    - "backtest"
+    - "slippage"
+    - "transaction cost"
+    - "alpha"
+    - "signal"
+    - "strategy"
+    - "technical analysis"
+    - "chart"
+    - "indicator"
+    - "moving average"
+    - "rsi"
+    - "macd"
+    - "candlestick"
+    - "support"
+    - "resistance"
+    - "trend"
+  
+  time_series:
+    - "time series"
+    - "forecasting"
+    - "arima"
+    - "garch"
+    - "autocorrelation"
+    - "lag"
+    - "seasonality"
+    - "trend"

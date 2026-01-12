@@ -1,0 +1,24 @@
+# Field options for learn_flow onboarding form
+
+target_job_titles:
+  - Quant Researcher
+  - Quant Analyst
+  - Quant Trader
+  - ML Researcher
+  - ML Engineer
+
+target_seniority_levels:
+  - Junior
+  - Intermediate
+  - Advanced
+
+current_seniority_levels:
+  - Student
+  - Junior
+  - Intermediate
+  - Advanced
+
+industries:
+  - Student
+  - Finance
+  - Technology

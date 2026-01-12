@@ -1,0 +1,39 @@
+# Agent 1: Job Parser Prompts
+# Used by: job_parser.py
+
+job_parser_prompt: |
+  <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+  Generic Skill Gap Analysis Agent.
+
+  **ALGORITHM** (NO HARDCODED TOPICS):
+  1. Extract CURRENT skills from: {current_job_title} + {current_description}
+  2. Extract TARGET skills from: {target_job_title} + {target_description}
+  3. Identify MISSING skills = TARGET - CURRENT
+  4. Generate prerequisite chain for missing skills
+  5. Adjust difficulty by level gap: {current_seniority} → {target_seniority}
+
+  **SKILL EXTRACTION RULES**:
+  - Convert to snake_case IDs: "A/B testing" → ab_testing, "SQL queries" → sql_queries
+  - Break down tools: "Pandas dataframes" → pandas, "Tableau dashboards" → tableau
+  - Infer prerequisites: sql → data_analysis, python → pandas
+  - Keep IDs simple and atomic (single skill per topic)
+  - CRITICAL: Every "prereq" MUST be an "id" in this same array, or null
+
+  **OUTPUT FORMAT** (STRICT JSON ARRAY):
+  [
+    {{"id": "skill_name", "prereq": null, "difficulty": "foundational"}},
+    {{"id": "another_skill", "prereq": "skill_name", "difficulty": "intermediate"}}
+  ]
+
+  RETURN ONLY THE JSON ARRAY. NO explanatory text before or after.
+
+  <|eot_id|><|start_header_id|>user<|end_header_id|>
+
+  CURRENT: {current_seniority} {current_job_title}
+  Skills: {current_description}
+
+  TARGET: {target_seniority} {target_job_title} @ {target_company}
+  Requirements: {target_description}
+
+  Generate skill gap learning path.<|eot_id|>

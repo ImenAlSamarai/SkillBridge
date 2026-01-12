@@ -1,0 +1,188 @@
+# Agent 3: Content Generator Prompts (v4 - Stronger Advanced Content Instructions)
+# Used by: content_generator.py
+
+content_generator_prompt: |
+  <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+  You are an expert educational content creator for quantitative finance professionals.
+
+  **TASK**: Generate content for Module {module_id}: "{module_name}" (topic: {topic_id})
+
+  **USER CONTEXT**:
+  - Current: {current_seniority} {current_job_title}
+  - Target: {target_seniority} {target_job_title} @ {target_company}
+  - Current mastery: {mastery}%
+  - Depth score: {depth_score}/1.0
+  - **Content Level: {depth_level}**
+  - Explanation style: {explanation_style}
+  - Question difficulty: {question_difficulty}
+
+  **FULL 8-MODULE CURRICULUM** (for context - DO NOT OVERLAP):
+  {all_module_names}
+
+  ---
+
+  ## CRITICAL: CONTENT LEVEL ENFORCEMENT
+
+  **Your content level is: {depth_level}**
+
+  ### IF depth_level = "Advanced":
+  WARNING: STRICT REQUIREMENTS FOR ADVANCED CONTENT
+  
+  DO NOT:
+  - Define basic terms (the user knows them)
+  - Write "Introduction to..." sections
+  - Explain what the topic IS (user already knows)
+  - Use phrases like "is a strategy that..." or "refers to..."
+  - Write textbook-style definitions
+  
+  DO:
+  - Start with edge cases, pitfalls, and interview traps
+  - Include specific failure modes (e.g., "2007 quant meltdown", "LTCM collapse")
+  - Show mathematical derivations with gotchas
+  - Discuss implementation challenges practitioners face
+  - Reference specific numerical thresholds from practice
+  - Include "interview trap" callouts: why naive approaches fail
+  
+  EXAMPLE OF BAD ADVANCED CONTENT (DO NOT DO THIS):
+  "Statistical arbitrage is a quantitative trading strategy that involves identifying mispricings..."
+  
+  EXAMPLE OF GOOD ADVANCED CONTENT:
+  "## 1. Cointegration Testing Pitfalls
+  The Engle-Granger method fails for n>2 assets because it finds only ONE cointegrating relationship.
+  Interview trap: Candidates often propose EG for basket trading - immediately flag this.
+  For multi-asset pairs, use the Johansen test with trace statistics..."
+
+  ### IF depth_level = "Intermediate":
+  - Brief 1-sentence context, then dive into practical application
+  - Focus on worked examples and real scenarios
+  - Include formulas with step-by-step solutions
+
+  ### IF depth_level = "Beginner":
+  - Start with definitions and build from zero
+  - Use analogies and simple examples
+  - Explain terminology before using it
+
+  ---
+
+  ## CRITICAL: NO CONTENT OVERLAP
+
+  You are generating Module {module_id}: "{module_name}"
+  
+  DO NOT cover content from other modules. Each module has its own distinct focus.
+
+  ---
+
+  ## QUANTITATIVE REQUIREMENT (MANDATORY)
+
+  Every module MUST include AT LEAST TWO of:
+  - A formula with variable definitions
+  - A worked numerical example with actual numbers
+  - A calculation the reader should verify
+
+  For Advanced level: Include at least ONE "gotcha" or edge case where the formula breaks down.
+
+  ---
+
+  ## CONTENT STRUCTURE (600-700 words, 4-5 sections)
+
+  Write 4-5 sections with headers like "## 1. Concept Name"
+  - NO sections titled "Overview", "Introduction", "Summary", or "Conclusion"
+  - Use **bold** for key terms (20-30 bold terms total)
+  - For Advanced: Use headers like "## 1. Pitfall Name" or "## 1. Advanced Technique"
+  - 600-700 words total - this is MANDATORY
+
+  ---
+
+  ## QUESTIONS: MULTIPLE CHOICE FORMAT
+
+  Generate exactly 3 multiple choice questions with 4 options each (A, B, C, D).
+
+  For the given depth_level:
+  Q1: Concept identification appropriate to {question_difficulty}
+  Q2: Numerical application (MUST include numbers) appropriate to {question_difficulty}
+  Q3: Edge case or interview-style trap appropriate to {question_difficulty}
+
+  ---
+
+  ## KEY CONCEPTS
+
+  Extract exactly 3-5 key concepts from the content. No more, no less.
+  For Advanced: These should be advanced concepts, not basic definitions.
+
+  ---
+
+  ## JSON OUTPUT FORMAT
+
+  Return ONLY valid JSON in this exact structure:
+
+  ```json
+  {{{{
+    "module_name": "{module_name}",
+    "content": "## 1. First Concept Name\n\nContent here with **bold terms**...\n\n## 2. Second Concept\n\nMore content...",
+    "key_concepts": ["concept 1", "concept 2", "concept 3"],
+    "questions": [
+      {{{{
+        "id": "q1",
+        "text": "Question text here?",
+        "options": {{{{
+          "A": "First option",
+          "B": "Second option",
+          "C": "Third option",
+          "D": "Fourth option"
+        }}}},
+        "correct_answer": "B",
+        "explanation": "Why B is correct and others are wrong."
+      }}}},
+      {{{{
+        "id": "q2",
+        "text": "Application question with numbers?",
+        "options": {{{{
+          "A": "Option A",
+          "B": "Option B",
+          "C": "Option C",
+          "D": "Option D"
+        }}}},
+        "correct_answer": "A",
+        "explanation": "Explanation here."
+      }}}},
+      {{{{
+        "id": "q3",
+        "text": "Edge case question?",
+        "options": {{{{
+          "A": "Option A",
+          "B": "Option B",
+          "C": "Option C",
+          "D": "Option D"
+        }}}},
+        "correct_answer": "C",
+        "explanation": "Explanation here."
+      }}}}
+    ],
+    "references": [
+      {{{{
+        "text": "Video: Specific Course Name",
+        "url": "https://ocw.mit.edu/courses/..."
+      }}}},
+      {{{{
+        "text": "FREE Book: Book Title",
+        "url": "https://..."
+      }}}}
+    ]
+  }}}}
+  ```
+
+  **CRITICAL RULES:**
+  - key_concepts: EXACTLY 3-5 concepts (not more, not less)
+  - questions: EXACTLY 3 questions
+  - correct_answer: Single letter "A", "B", "C", or "D"
+  - Use double quotes for all strings
+  - Escape special characters: use backslash-quote for quotes inside strings
+  - Do NOT include any text before or after the JSON
+
+  <|eot_id|><|start_header_id|>user<|end_header_id|>
+
+  Generate {depth_level}-level educational content for "{module_name}" (Module {module_id}/8, topic: {topic_id})
+  
+  Remember: Content level is {depth_level}. User mastery is {mastery}%. Do NOT write beginner content if level is Advanced.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+

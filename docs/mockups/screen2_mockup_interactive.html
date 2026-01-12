@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen 2 Mockup - Interactive Tabs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 32px 40px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .tab:hover:not(.active) {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Main Content */
+        .content {
+            padding: 40px;
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        /* Hero Card */
+        .hero-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .metric-large {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+
+        .stage-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .hero-description {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .column {
+            background: white;
+        }
+
+        .column-header {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .column-subheader {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        /* Topic Cards */
+        .topic-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .topic-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .topic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .topic-name {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .topic-meta {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .progress-bar-container {
+            background: #f1f5f9;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .next-action {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        .next-action-cta {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        /* Radar Chart Placeholder */
+        .radar-chart {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .radar-chart-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #475569;
+        }
+
+        .radar-chart-description {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        .radar-visual {
+            margin: 24px 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, rgba(102, 126, 234, 0.05) 50%, transparent 70%);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radar-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .radar-line {
+            position: absolute;
+            width: 2px;
+            height: 50%;
+            background: rgba(102, 126, 234, 0.3);
+            top: 50%;
+            left: 50%;
+            transform-origin: top center;
+        }
+
+        .radar-line:nth-child(1) { transform: translateX(-50%) rotate(0deg); }
+        .radar-line:nth-child(2) { transform: translateX(-50%) rotate(45deg); }
+        .radar-line:nth-child(3) { transform: translateX(-50%) rotate(90deg); }
+        .radar-line:nth-child(4) { transform: translateX(-50%) rotate(135deg); }
+        .radar-line:nth-child(5) { transform: translateX(-50%) rotate(180deg); }
+        .radar-line:nth-child(6) { transform: translateX(-50%) rotate(225deg); }
+        .radar-line:nth-child(7) { transform: translateX(-50%) rotate(270deg); }
+        .radar-line:nth-child(8) { transform: translateX(-50%) rotate(315deg); }
+
+        .radar-center-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #667eea;
+            z-index: 10;
+        }
+
+        .legend {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        .legend-color.initial {
+            background: rgba(150, 150, 150, 0.4);
+        }
+
+        .legend-color.current {
+            background: #667eea;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge.red { background: #fee2e2; color: #991b1b; }
+        .badge.orange { background: #ffedd5; color: #9a3412; }
+        .badge.yellow { background: #fef3c7; color: #92400e; }
+        .badge.green { background: #d1fae5; color: #065f46; }
+
+        /* LEARN TAB STYLES */
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .topic-card-large {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .topic-card-large:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .topic-card-large .topic-name {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .module-box {
+            aspect-ratio: 1;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .module-box:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .module-box.completed {
+            background: #d1fae5;
+            border-color: #065f46;
+            color: #065f46;
+        }
+
+        .module-box.in-progress {
+            background: #fef3c7;
+            border-color: #92400e;
+            color: #92400e;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* ANALYTICS TAB STYLES */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .metric-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .metric-card-header {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-card-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .metric-card-change {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: 500;
+        }
+
+        .chart-placeholder {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .chart-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #475569;
+        }
+
+        .chart-description {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .activity-heatmap {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-top: 16px;
+        }
+
+        .heatmap-day {
+            aspect-ratio: 1;
+            border-radius: 4px;
+            background: #e5e7eb;
+        }
+
+        .heatmap-day.low { background: #dbeafe; }
+        .heatmap-day.medium { background: #93c5fd; }
+        .heatmap-day.high { background: #3b82f6; }
+        .heatmap-day.very-high { background: #1e40af; }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th {
+            text-align: left;
+            padding: 12px;
+            background: #f8fafc;
+            font-size: 13px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .two-column, .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📊 Mastery Mapping</h1>
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('dashboard')">Dashboard</button>
+                <button class="tab" onclick="showTab('learn')">Learn</button>
+                <button class="tab" onclick="showTab('analytics')">Analytics</button>
+            </div>
+        </div>
+
+        <!-- DASHBOARD TAB -->
+        <div class="content active" id="dashboard">
+            <!-- Hero Card -->
+            <div class="hero-card">
+                <div class="metric-label">Average Mastery Level ℹ️</div>
+                <div class="metric-large">46.7%</div>
+                <div class="stage-badge">
+                    🟡 Building Phase
+                </div>
+                <div class="hero-description">
+                    You're beyond the basics—foundation is solid! Focus on filling core skill gaps next.<br>
+                    <strong>Estimated time to Advanced (75%):</strong> 6-8 weeks at current pace
+                    <br><br>
+                    💡 <strong>Tip:</strong> Prioritize topics under 40% for maximum impact
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-value">+12%</div>
+                    <div class="stat-label">Progress This Week</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">🔥 5 days</div>
+                    <div class="stat-label">Current Streak</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">23/96</div>
+                    <div class="stat-label">Modules Complete</div>
+                </div>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="two-column">
+                <!-- Left: Topics List -->
+                <div class="column">
+                    <div class="column-header">
+                        📚 Your Topics
+                    </div>
+                    <div class="column-subheader">
+                        Click any topic to start learning
+                    </div>
+
+                    <!-- Topic Card 1 -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-name">
+                                <span class="badge red">🔴</span>
+                                Linear Algebra
+                            </div>
+                            <div class="topic-meta">16h · 8 modules</div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 20%"></div>
+                        </div>
+                        <div class="progress-text">20% complete</div>
+                        <div class="next-action">
+                            💡 <span class="next-action-cta">→ Start Module 2: Matrix Operations</span>
+                        </div>
+                    </div>
+
+                    <!-- Topic Card 2 -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-name">
+                                <span class="badge orange">🟠</span>
+                                Statistics
+                            </div>
+                            <div class="topic-meta">12h · 8 modules</div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 35%"></div>
+                        </div>
+                        <div class="progress-text">35% complete</div>
+                        <div class="next-action">
+                            💡 <span class="next-action-cta">→ Continue Module 4: Hypothesis Testing</span>
+                        </div>
+                    </div>
+
+                    <!-- Topic Card 3 -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-name">
+                                <span class="badge yellow">🟡</span>
+                                Machine Learning
+                            </div>
+                            <div class="topic-meta">24h · 8 modules</div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 50%"></div>
+                        </div>
+                        <div class="progress-text">50% complete</div>
+                        <div class="next-action">
+                            💡 <span class="next-action-cta">→ Continue Module 5: Neural Networks</span>
+                        </div>
+                    </div>
+
+                    <!-- Topic Card 4 -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-name">
+                                <span class="badge green">🟢</span>
+                                Python Programming
+                            </div>
+                            <div class="topic-meta">8h · 8 modules</div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 85%"></div>
+                        </div>
+                        <div class="progress-text">85% complete</div>
+                        <div class="next-action">
+                            💡 <span class="next-action-cta">→ Almost there! 2 modules remaining</span>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 16px; color: #64748b; font-size: 14px;">
+                        + 8 more topics
+                    </div>
+                </div>
+
+                <!-- Right: Radar Chart -->
+                <div class="column">
+                    <div class="column-header">
+                        📊 Progress Overview
+                    </div>
+                    <div class="column-subheader">
+                        Initial assessment vs. current mastery
+                    </div>
+
+                    <div class="radar-chart">
+                        <div class="radar-chart-title">Knowledge Profile</div>
+                        <div class="radar-visual">
+                            <div class="radar-lines">
+                                <div class="radar-line"></div>
+                                <div class="radar-line"></div>
+                                <div class="radar-line"></div>
+                                <div class="radar-line"></div>
+                                <div class="radar-line"></div>
+                                <div class="radar-line"></div>
+                                <div class="radar-line"></div>
+                                <div class="radar-line"></div>
+                            </div>
+                            <div class="radar-center-text">46.7%</div>
+                        </div>
+                        <div class="radar-chart-description">
+                            <strong>Two-line overlay:</strong><br>
+                            • Faded dashed line: Initial assessment<br>
+                            • Solid filled area: Current mastery<br>
+                            • Shaded gap shows your growth!<br><br>
+                            Click any segment to jump to that topic
+                        </div>
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color initial"></div>
+                                Initial (Day 1)
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color current"></div>
+                                Current (Week 3)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEARN TAB -->
+        <div class="content" id="learn">
+            <div class="column-header" style="margin-bottom: 8px;">
+                📚 Choose a Topic to Continue Learning
+            </div>
+            <div class="column-subheader" style="margin-bottom: 32px;">
+                Click on any topic card to see modules and start learning
+            </div>
+
+            <div class="topic-grid">
+                <!-- Topic Card 1 -->
+                <div class="topic-card-large">
+                    <div class="topic-name">
+                        <span class="badge red">🔴</span>
+                        Linear Algebra
+                    </div>
+                    <div class="topic-meta">16h · 20% complete</div>
+                    <div class="progress-bar-container" style="margin-top: 12px;">
+                        <div class="progress-bar-fill" style="width: 20%"></div>
+                    </div>
+
+                    <div class="module-grid">
+                        <div class="module-box completed">✅<br>1</div>
+                        <div class="module-box in-progress">⏳<br>2</div>
+                        <div class="module-box">🔒<br>3</div>
+                        <div class="module-box">🔒<br>4</div>
+                        <div class="module-box">🔒<br>5</div>
+                        <div class="module-box">🔒<br>6</div>
+                        <div class="module-box">🔒<br>7</div>
+                        <div class="module-box">🔒<br>8</div>
+                    </div>
+
+                    <button class="btn-primary">Continue Module 2</button>
+                </div>
+
+                <!-- Topic Card 2 -->
+                <div class="topic-card-large">
+                    <div class="topic-name">
+                        <span class="badge orange">🟠</span>
+                        Statistics
+                    </div>
+                    <div class="topic-meta">12h · 35% complete</div>
+                    <div class="progress-bar-container" style="margin-top: 12px;">
+                        <div class="progress-bar-fill" style="width: 35%"></div>
+                    </div>
+
+                    <div class="module-grid">
+                        <div class="module-box completed">✅<br>1</div>
+                        <div class="module-box completed">✅<br>2</div>
+                        <div class="module-box completed">✅<br>3</div>
+                        <div class="module-box in-progress">⏳<br>4</div>
+                        <div class="module-box">🔒<br>5</div>
+                        <div class="module-box">🔒<br>6</div>
+                        <div class="module-box">🔒<br>7</div>
+                        <div class="module-box">🔒<br>8</div>
+                    </div>
+
+                    <button class="btn-primary">Continue Module 4</button>
+                </div>
+
+                <!-- Topic Card 3 -->
+                <div class="topic-card-large">
+                    <div class="topic-name">
+                        <span class="badge yellow">🟡</span>
+                        Machine Learning
+                    </div>
+                    <div class="topic-meta">24h · 50% complete</div>
+                    <div class="progress-bar-container" style="margin-top: 12px;">
+                        <div class="progress-bar-fill" style="width: 50%"></div>
+                    </div>
+
+                    <div class="module-grid">
+                        <div class="module-box completed">✅<br>1</div>
+                        <div class="module-box completed">✅<br>2</div>
+                        <div class="module-box completed">✅<br>3</div>
+                        <div class="module-box completed">✅<br>4</div>
+                        <div class="module-box in-progress">⏳<br>5</div>
+                        <div class="module-box">🔒<br>6</div>
+                        <div class="module-box">🔒<br>7</div>
+                        <div class="module-box">🔒<br>8</div>
+                    </div>
+
+                    <button class="btn-primary">Continue Module 5</button>
+                </div>
+
+                <!-- Topic Card 4 -->
+                <div class="topic-card-large">
+                    <div class="topic-name">
+                        <span class="badge green">🟢</span>
+                        Python Programming
+                    </div>
+                    <div class="topic-meta">8h · 85% complete</div>
+                    <div class="progress-bar-container" style="margin-top: 12px;">
+                        <div class="progress-bar-fill" style="width: 85%"></div>
+                    </div>
+
+                    <div class="module-grid">
+                        <div class="module-box completed">✅<br>1</div>
+                        <div class="module-box completed">✅<br>2</div>
+                        <div class="module-box completed">✅<br>3</div>
+                        <div class="module-box completed">✅<br>4</div>
+                        <div class="module-box completed">✅<br>5</div>
+                        <div class="module-box completed">✅<br>6</div>
+                        <div class="module-box in-progress">⏳<br>7</div>
+                        <div class="module-box">🔒<br>8</div>
+                    </div>
+
+                    <button class="btn-primary">Continue Module 7</button>
+                </div>
+
+                <!-- More topic cards... -->
+                <div class="topic-card-large" style="opacity: 0.6; pointer-events: none;">
+                    <div class="topic-name">
+                        + 8 more topics
+                    </div>
+                    <div style="padding: 40px 0; text-align: center; color: #64748b;">
+                        <div style="font-size: 48px; margin-bottom: 8px;">📚</div>
+                        View all topics in sidebar
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ANALYTICS TAB -->
+        <div class="content" id="analytics">
+            <div class="column-header" style="margin-bottom: 8px;">
+                📈 Your Learning Analytics
+            </div>
+            <div class="column-subheader" style="margin-bottom: 32px;">
+                Track your progress, streaks, and time investment
+            </div>
+
+            <!-- Metrics Grid -->
+            <div class="analytics-grid">
+                <div class="metric-card">
+                    <div class="metric-card-header">Total Study Time</div>
+                    <div class="metric-card-value">18.5h</div>
+                    <div class="metric-card-change">↗ +4.2h this week</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-header">Current Streak</div>
+                    <div class="metric-card-value">🔥 5 days</div>
+                    <div class="metric-card-change">Longest: 12 days</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-header">Modules Completed</div>
+                    <div class="metric-card-value">23/96</div>
+                    <div class="metric-card-change">↗ +8 this week</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-header">Average Daily Progress</div>
+                    <div class="metric-card-value">1.8%</div>
+                    <div class="metric-card-change">↗ Above average!</div>
+                </div>
+            </div>
+
+            <!-- Progress Over Time Chart -->
+            <div class="chart-placeholder" style="height: 300px;">
+                <div class="chart-title">📊 Mastery Progress Over Time</div>
+                <div class="chart-description">
+                    Line chart showing your average mastery increasing from 30% (Week 1) → 46.7% (Week 3)
+                    <br><br>
+                    X-axis: Date | Y-axis: Average Mastery %
+                    <br><br>
+                    Projected: 75% mastery in 6-8 weeks at current pace
+                </div>
+            </div>
+
+            <!-- Two Column Analytics -->
+            <div class="two-column">
+                <!-- Activity Heatmap -->
+                <div>
+                    <div class="column-header">🔥 Activity Heatmap (Last 28 Days)</div>
+                    <div class="column-subheader">Darker = More modules completed that day</div>
+
+                    <div class="activity-heatmap">
+                        <div class="heatmap-day"></div>
+                        <div class="heatmap-day low"></div>
+                        <div class="heatmap-day medium"></div>
+                        <div class="heatmap-day"></div>
+                        <div class="heatmap-day low"></div>
+                        <div class="heatmap-day high"></div>
+                        <div class="heatmap-day medium"></div>
+
+                        <div class="heatmap-day low"></div>
+                        <div class="heatmap-day"></div>
+                        <div class="heatmap-day medium"></div>
+                        <div class="heatmap-day high"></div>
+                        <div class="heatmap-day"></div>
+                        <div class="heatmap-day low"></div>
+                        <div class="heatmap-day very-high"></div>
+
+                        <div class="heatmap-day medium"></div>
+                        <div class="heatmap-day low"></div>
+                        <div class="heatmap-day"></div>
+                        <div class="heatmap-day high"></div>
+                        <div class="heatmap-day medium"></div>
+                        <div class="heatmap-day"></div>
+                        <div class="heatmap-day low"></div>
+
+                        <div class="heatmap-day"></div>
+                        <div class="heatmap-day high"></div>
+                        <div class="heatmap-day very-high"></div>
+                        <div class="heatmap-day medium"></div>
+                        <div class="heatmap-day low"></div>
+                        <div class="heatmap-day"></div>
+                        <div class="heatmap-day medium"></div>
+                    </div>
+
+                    <div style="margin-top: 12px; font-size: 13px; color: #64748b;">
+                        💡 Most productive day: Tuesday (avg 3.2 modules)
+                    </div>
+                </div>
+
+                <!-- Topic Performance -->
+                <div>
+                    <div class="column-header">🎯 Topic Performance</div>
+                    <div class="column-subheader">Topics ranked by completion rate</div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Topic</th>
+                                <th>Progress</th>
+                                <th>Accuracy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Python Programming</strong></td>
+                                <td>85%</td>
+                                <td>🟢 92%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Machine Learning</strong></td>
+                                <td>50%</td>
+                                <td>🟡 88%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Statistics</strong></td>
+                                <td>35%</td>
+                                <td>🟡 85%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Linear Algebra</strong></td>
+                                <td>20%</td>
+                                <td>🟠 78%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: 12px; font-size: 13px; color: #64748b;">
+                        💡 Accuracy = % of questions answered correctly on first try
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestones -->
+            <div style="margin-top: 32px;">
+                <div class="column-header">🏆 Milestones & Achievements</div>
+                <div class="column-subheader">Your learning journey highlights</div>
+
+                <div style="display: grid; gap: 12px; margin-top: 20px;">
+                    <div style="background: #d1fae5; border-left: 4px solid #065f46; padding: 16px; border-radius: 8px;">
+                        <strong>✅ First Module Complete!</strong> (Day 1)
+                        <div style="font-size: 13px; color: #065f46; margin-top: 4px;">Started Linear Algebra module 1</div>
+                    </div>
+
+                    <div style="background: #d1fae5; border-left: 4px solid #065f46; padding: 16px; border-radius: 8px;">
+                        <strong>✅ 5-Day Streak!</strong> (Week 1)
+                        <div style="font-size: 13px; color: #065f46; margin-top: 4px;">Consistency is key to mastery</div>
+                    </div>
+
+                    <div style="background: #d1fae5; border-left: 4px solid #065f46; padding: 16px; border-radius: 8px;">
+                        <strong>✅ 25% Mastery Reached!</strong> (Week 2)
+                        <div style="font-size: 13px; color: #065f46; margin-top: 4px;">Quarter of the way there!</div>
+                    </div>
+
+                    <div style="background: #fef3c7; border-left: 4px solid #92400e; padding: 16px; border-radius: 8px;">
+                        <strong>⏳ Next: 50% Mastery</strong> (Estimated: 2 weeks)
+                        <div style="font-size: 13px; color: #92400e; margin-top: 4px;">23 more modules to go!</div>
+                    </div>
+
+                    <div style="background: #f1f5f9; border-left: 4px solid #64748b; padding: 16px; border-radius: 8px;">
+                        <strong>🎓 100% Ready for Interviews</strong> (Estimated: 8-10 weeks)
+                        <div style="font-size: 13px; color: #64748b; margin-top: 4px;">Complete all 96 modules</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all content
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected content
+            document.getElementById(tabName).classList.add('active');
+
+            // Activate clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

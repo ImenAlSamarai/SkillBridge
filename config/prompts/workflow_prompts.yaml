@@ -1,0 +1,33 @@
+# Workflow Orchestrator Prompts
+# Used by: langgraph_workflow.py
+# Note: The orchestrator does NOT make LLM calls - this is for documentation only
+
+workflow_orchestrator_prompt: |
+  <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+  LangGraph Workflow Orchestrator. NO content generation.
+
+  **WORKFLOW**: Form → Agent 1 → Agent 2 → Database
+
+  AGENT 1 (Job Parser):
+  - Input: Form data (current/target job descriptions)
+  - Output: Topics JSON with skill gaps
+  - Module: job_parser.py
+
+  AGENT 2 (Topic Assessor):
+  - Input: Topics JSON from Agent 1
+  - Output: Assessed topics with mastery%, hours, subtopics
+  - Module: topic_assessor.py
+
+  DATABASE SAVE:
+  - Update paths table with global_readiness
+  - Insert user_skills for each topic
+
+  **STATUS REPORTING**: JSON only.
+  {{"step": "agent1", "status": "complete", "topics_count": 12}}
+  {{"step": "agent2", "status": "complete", "global_readiness": 15.0}}
+  {{"step": "database", "status": "complete"}}
+
+  Coordinates Phase 2B → Phase 2C pipeline. No LLM calls in orchestrator.
+
+  <|eot_id|>

@@ -1,0 +1,110 @@
+learn_flow/
+├── .DS_Store                         (OS file - gitignored)
+├── .env                              (Environment variables - gitignored)
+├── .env.example                      (Environment template)
+├── .gitignore                        ✅ NEW - Git ignore rules
+├── .mcp.json                         (MCP server configuration)
+├── README.md                         (Project documentation)
+├── requirements.txt                  (Python dependencies)
+│
+├── src/                              # Source code
+│   ├── __init__.py
+│   ├── agents/                       # Agent implementations
+│   │   ├── __init__.py
+│   │   ├── job_parser.py
+│   │   ├── topic_assessor.py
+│   │   └── content_generator.py
+│   ├── workflow/                     # LangGraph orchestrator
+│   │   ├── __init__.py
+│   │   └── orchestrator.py
+│   ├── core/                         # Core utilities
+│   │   ├── __init__.py
+│   │   ├── config_loader.py
+│   │   ├── config_legacy.py          ✅ MOVED (was config.py)
+│   │   ├── calculators.py
+│   │   ├── database.py
+│   │   └── llm_engine.py
+│   └── ui/                           # Streamlit UI
+│       ├── __init__.py
+│       └── app.py
+│
+├── config/                           # Configuration files
+│   ├── agents/
+│   │   ├── agent1_job_parser.yaml
+│   │   ├── agent2_topic_assessor.yaml
+│   │   └── agent3_content_generator.yaml
+│   ├── prompts/
+│   │   ├── agent1_prompts.yaml
+│   │   ├── agent2_prompts.yaml
+│   │   └── agent3_prompts.yaml
+│   ├── resources/
+│   │   └── learning_resources.yaml
+│   ├── thresholds.yaml
+│   ├── fields.yaml
+│   ├── golden_sources.yaml
+│   └── admin_users.yaml
+│
+├── tests/                            # Test files
+│   ├── __init__.py
+│   ├── unit/
+│   │   ├── __init__.py
+│   │   ├── test_config_loader.py
+│   │   ├── test_content_generator_adaptation.py
+│   │   └── test_topic_assessor_adaptation.py
+│   ├── integration/
+│   │   ├── __init__.py
+│   │   ├── test_all_agents_comprehensive.py
+│   │   ├── test_phase2b.py
+│   │   ├── test_phase2c.py
+│   │   └── test_phase2d.py
+│   └── validation/
+│       ├── __init__.py
+│       ├── test_foundations_fix.py
+│       ├── test_statistical_basis.py
+│       ├── test_advanced_content.py
+│       ├── test_reference_system_comprehensive.py
+│       └── ... (10+ more validation tests)
+│
+├── scripts/                          # Admin & utility scripts
+│   ├── admin.py
+│   └── populate_test_data.py
+│
+├── examples/                         ✅ NEW - Demo & example scripts
+│   ├── README.md                     ✅ NEW
+│   └── demo_clickable_references.py  ✅ MOVED
+│
+├── database/                         # Database files
+│   ├── learnflow.db                  ✅ MOVED (gitignored)
+│   ├── phase2c.sql
+│   └── phase3.sql
+│
+├── outputs/                          ✅ NEW - Generated outputs
+│   └── graph.html                    ✅ MOVED (gitignored)
+│
+└── docs/                             # Documentation
+    ├── DOCUMENTATION_ORGANIZATION.md  (Markdown organization guide)
+    ├── FILE_ORGANIZATION_SUMMARY.md   ✅ NEW (File organization guide)
+    ├── REFACTORING_PLAN.md           (Current refactoring plan)
+    ├── FINAL_REFERENCE_SOURCES.md    (Reference sources list)
+    ├── REFERENCE_VALIDATION_COMPLETE.md (Complete validation system)
+    ├── TEST_RESULTS_SUMMARY.md       (Test status)
+    ├── tasks/                        # Task completion summaries
+    │   ├── TASK1_COMPLETION_SUMMARY.md
+    │   ├── TASK2_COMPLETION_SUMMARY.md
+    │   ├── TASK3_COMPLETION_SUMMARY.md
+    │   ├── TASK4_COMPLETION_SUMMARY.md
+    │   └── TASK5_AND_TASK6_COMPLETION.md
+    ├── archive/                      # Superseded documentation
+    │   ├── Claude.md
+    │   ├── DASHBOARD_NEW.md
+    │   ├── FIXES_SUMMARY.md
+    │   ├── FLAWLESS_UX_IMPLEMENTATION.md
+    │   ├── FREE_CLAIM_VALIDATION.md
+    │   ├── IMPLEMENTATION_SUMMARY.md
+    │   ├── REFERENCE_QUALITY_FINAL.md
+    │   ├── REFERENCE_QUALITY_VALIDATION.md
+    │   ├── URL_VALIDATION_IMPLEMENTATION.md
+    │   └── URL_VALIDATION_SYSTEM.md
+    └── mockups/                      ✅ NEW - UI design mockups
+        ├── screen2_mockup.html       ✅ MOVED
+        └── screen2_mockup_interactive.html ✅ MOVED

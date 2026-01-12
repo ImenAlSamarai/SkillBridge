@@ -1,0 +1,265 @@
+# Agent 3: Content Generator Configuration
+# Generates educational content, questions, and references for each module
+
+agent_metadata:
+  name: "Content Generator"
+  version: "3.0"
+  description: "Creates personalized learning content, comprehension questions, and curated references"
+
+# LLM Settings (Multiple Operations)
+llm_config:
+  # Main content generation
+  content_generation:
+    model: "llama-3.3-70b-versatile"
+    temperature: 0.5                 # Creative but focused content
+    max_tokens: 3500                 # Accommodate 600-700 word content + questions + key concepts (increased from 2500)
+    timeout_seconds: 120
+
+  # Module name reframing
+  module_reframing:
+    model: "llama-3.3-70b-versatile"
+    temperature: 0.3                 # More focused for concise names
+    max_tokens: 50
+    timeout_seconds: 10
+
+  # Module name generation
+  module_naming:
+    model: "llama-3.3-70b-versatile"
+    temperature: 0.3                 # Consistent naming
+    max_tokens: 300
+    timeout_seconds: 20
+
+# Content Structure
+content_structure:
+  word_count:
+    min: 400
+    max: 500
+    strict: true                     # Enforce word count
+
+  sections:
+    min: 3
+    max: 4
+    format: "numbered"               # ## 1., ## 2., etc.
+
+  section_word_count:
+    section_1: [120, 140]
+    section_2: [120, 140]
+    section_3: [120, 140]
+    section_4: [80, 100]             # Optional 4th section
+
+  bold_terms:
+    min: 15
+    max: 25
+    usage: "key concepts and technical terms"
+
+  # NO generic sections
+  forbidden_section_titles:
+    - "Overview"
+    - "Summary"
+    - "Introduction"
+    - "Conclusion"
+
+  required: "Only specific concept names as section titles"
+
+# Foundational Content Detection
+foundational_detection:
+  # If ANY of these conditions are true → teach basics
+  triggers:
+    - depth_score_below: 0.3
+    - keywords_in_module_name:
+        - "foundations"
+        - "basics"
+        - "introduction"
+        - "basis"
+        - "fundamentals"
+        - "overview"
+        - "essentials"
+
+  rules_when_foundational:
+    - "TEACH THE FUNDAMENTALS"
+    - "NO reframing allowed"
+    - "NO advanced topics"
+    - "NO company-specific content (e.g., HFT, trading)"
+
+# Module Reframing Rules
+module_reframing:
+  enabled: true
+
+  # ONLY reframe if ALL conditions are met
+  conditions:
+    depth_score_min: 0.5
+    mastery_min: 50
+    not_foundational: true           # Module name must NOT contain foundational keywords
+
+  max_words: 8                       # Reframed name max length
+
+  examples:
+    - original: "Data Analysis"
+      context: "Advanced Trader + depth 0.7"
+      reframed: "Market Data Analysis for Trading Strategies"
+
+    - original: "Python Programming"
+      context: "ML Engineer + depth 0.8"
+      reframed: "Python Optimization for Production ML Systems"
+
+# Key Concepts
+key_concepts:
+  count:
+    min: 3
+    max: 5
+
+  format: "array of strings"
+  description: "Core ideas the user MUST understand"
+
+# Comprehension Questions
+questions:
+  count: 3
+
+  required_fields:
+    - "id"
+    - "text"
+    - "correct_answer"
+    - "explanation"
+
+  difficulty_mapping:
+    Student: "Conceptual"
+    Junior: "Applied"
+    Intermediate: "Analytical"
+    Senior: "Strategic"
+    Advanced: "Expert"
+
+  # Special rules for certain companies
+  company_specific:
+    - companies: ["Citadel", "Jane Street", "DE Shaw"]
+      requirements:
+        - "Brain teasers"
+        - "Fast mental math"
+        - "Probability puzzles"
+
+# References
+references:
+  required_count: 2
+
+  required_types:
+    - "video"
+    - "book"
+
+  must_be:
+    - "Submodule-specific"
+    - "FREE"
+    - "From reputable institutions"
+
+  blocked_sources:
+    - "khanacademy.org"                          # All Khan Academy
+    - "youtube.com/results?search_query="        # YouTube search results
+    - "youtube.com/@"                            # YouTube channel homepages (need specific playlists)
+    - "packtpub.com"                             # Paid
+    - "manning.com"                              # Paid
+    - "oreilly.com"                              # Paid
+    - "amazon.com"                               # Paid
+
+  allowed_sources:
+    universities:
+      - "ocw.mit.edu"
+      - "oyc.yale.edu"
+      - "online.stanford.edu"
+      - "online-learning.harvard.edu"
+
+    mooc_platforms:
+      - "coursera.org"
+      - "edx.org"
+
+    verified_youtube:
+      - "3Blue1Brown playlists"
+      - "StatQuest playlists"
+      - "Stanford Online /courses"
+
+# Reference Validation
+reference_validation:
+  url_check:
+    enabled: true
+    timeout_seconds: 5
+    max_redirects: 30
+    success_codes: [200, 301, 302]
+
+  youtube_specific:
+    block_search_results: true
+    block_channel_pages: true        # Need specific video/playlist URLs
+    verify_playlist_exists: true
+
+  auto_replacement:
+    enabled: true
+    use_fallback: true               # Use learning_resources.yaml fallback
+    log_replacements: true
+
+# Personalization Rules (Priority Order)
+personalization_rules:
+  priority:
+    1:
+      name: "Depth Level Rule"
+      description: "HIGHEST PRIORITY - Check FIRST"
+      triggers:
+        - depth_score_below: 0.3
+        - foundational_keywords_present: true
+      action: "TEACH FUNDAMENTALS - NO reframing, NO advanced topics"
+
+    2:
+      name: "Skip Basics Rule"
+      triggers:
+        - mastery_above: 50
+        - seniority: ["Advanced", "Senior"]
+      action: "Skip basic definitions, focus on applications"
+
+    3:
+      name: "Role Transition Focus"
+      description: "Match content to the transition, not just the topic"
+      action: "Focus on skills needed for target role"
+
+    4:
+      name: "Company-Specific Content"
+      companies: ["Citadel", "Jane Street", "DE Shaw"]
+      action: "Include brain teasers, HFT concepts, quant focus"
+
+    5:
+      name: "Module Reframing"
+      conditions:
+        - depth_score_min: 0.5
+        - not_foundational: true
+      action: "Reframe module name for user context"
+
+# Output Format
+output:
+  format: "json"
+
+  structure:
+    module_name: "string"
+    content: "markdown string (400-500 words, 3-4 sections)"
+    key_concepts: ["array", "of", "strings"]
+    questions:
+      - id: "string"
+        text: "string"
+        correct_answer: "string"
+        explanation: "string"
+    references:
+      - text: "string"
+        url: "string"
+
+# Error Handling
+error_handling:
+  retry_on_json_error: true
+  max_retries: 2
+  clean_latex: true                  # Handle LaTeX escaping in JSON
+
+  # If content generation fails
+  fallback_behavior:
+    use_simpler_prompt: false
+    skip_module: false
+    raise_error: true
+
+# Logging
+logging:
+  log_reframing: true
+  log_foundational_detection: true
+  log_reference_validation: true
+  log_url_replacements: true
+  log_validation_warnings: true
