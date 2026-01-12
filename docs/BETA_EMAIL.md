@@ -20,9 +20,9 @@ You're invited to beta test **SkillBridge** - an AI platform that creates person
    - Complete 2-3 modules
    - Try the dashboard and progress tracking
 
-3. **Give feedback**: [GOOGLE_FORM_LINK]
-   - Takes 5 minutes
-   - Tells us if this is actually useful
+3. **Give feedback**:
+   - Fill out the attached CSV (5 minutes)
+   - Email it back to [YOUR_EMAIL]
 
 ## What We Need to Know
 
